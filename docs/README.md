@@ -5,9 +5,9 @@
 <h1 align="center">💤 NV-Dots</h1>
 
 <p align="center">
-  My personal Neovim setup, based on 
+  My personal Neovim setup, based on
   <a href="https://github.com/NvChad/starter" target="_blank">NvChad/starter</a>.<br/>
-  Built for productivity and focused on development with 
+  Built for productivity and focused on development with
   <b>Golang</b>, <b>Python</b>, <b>TypeScript</b>, and <b>JavaScript</b>.
 </p>
 
