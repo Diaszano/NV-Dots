@@ -42,7 +42,7 @@ A proposta é manter um ambiente **minimalista**, **rápido** e **altamente prod
 2. Remova ou faça backup de qualquer configuração anterior:
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
-````
+   ```
 
 3. Clone este repositório:
 
