@@ -43,13 +43,13 @@ dev-install: ## Install development dependencies
 .PHONY: lint
 lint: ## Run Lua linter (luacheck)
 	@echo "🔍 Running Lua linter..."
-	@$(LINTER) $(PKG_DIRS) --config=.luacheckrc
+	@$(LINTER) --config .luacheckrc $(PKG_DIRS)
 	@echo "✅ Lint check completed!"
 
 .PHONY: fmt
 fmt: ## Auto-format Lua configs using Stylua
 	@echo "🧹 Formatting Lua configs..."
-	@$(FORMATTER) $(PKG_DIRS) --config-path=stylua.toml
+	@$(FORMATTER) --config-path stylua.toml $(PKG_DIRS)
 	@echo "✅ Configs formatted successfully!"
 
 # ==================================================
