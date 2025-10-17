@@ -5,9 +5,9 @@
 <h1 align="center">💤 NV-Dots</h1>
 
 <p align="center">
-  Meu ambiente Neovim personalizado, baseado no 
+  Meu ambiente Neovim personalizado, baseado no
   <a href="https://github.com/NvChad/starter" target="_blank">NvChad/starter</a>.<br/>
-  Construído para produtividade e foco no desenvolvimento em 
+  Construído para produtividade e foco no desenvolvimento em
   <b>Golang</b>, <b>Python</b>, <b>TypeScript</b> e <b>JavaScript</b>.
 </p>
 
