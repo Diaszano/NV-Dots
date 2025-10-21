@@ -49,7 +49,7 @@ lint: ## Run Lua linter (luacheck)
 .PHONY: fmt
 fmt: ## Auto-format Lua configs using Stylua
 	@echo "🧹 Formatting Lua configs..."
-	@$(FORMATTER) --config-path stylua.toml $(PKG_DIRS)
+	@$(FORMATTER) --config-path .stylua.toml $(PKG_DIRS)
 	@echo "✅ Configs formatted successfully!"
 
 # ==================================================
