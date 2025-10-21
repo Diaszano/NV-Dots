@@ -32,7 +32,7 @@ repos:
         types:
         - lua
         args:
-        - "--config-path=stylua.toml"
+        - "--config-path=.stylua.toml"
         - "--check"
         additional_dependencies: []
 
