@@ -2,74 +2,74 @@ local opts = {
   ------------------------------------------------------------------------
   -- 1. FORMATTERS BY FILETYPE
   --
-  --   Each key is a Neovim filetype; each value is an ordered list of formatters
-  --   that will be tried in order. If the first fails, the next one is used.
-  --
-  --   External commands (e.g., "prettier") are fine – Conform simply spawns them.
+  -- Each key is a Neovim filetype; each value is an ordered list of formatters.
+  -- The first formatter is tried first; if it fails, the next one is used.
   ------------------------------------------------------------------------
   formatters_by_ft = {
-    go = { "goimports", "gofumpt" }, -- Go: fmt → gofumpt
+    -- ───── GO & PYTHON ─────
+    go = { "goimports", "gofumpt", "golines" }, -- Go: fmt → gofumpt
+    python = { "isort", "black" }, -- Python: sort imports → format
 
-    python = { "isort", "black" },
+    -- ───── JAVASCRIPT / TYPESCRIPT ─────
+    javascript = { "prettierd" },
+    typescript = { "prettierd" },
+    javascriptreact = { "prettierd" },
+    typescriptreact = { "prettierd" },
 
-    javascript = { "prettier" },
-    typescript = { "prettier" },
+    -- ───── MARKUP / DATA ─────
+    json = { "prettierd" },
+    toml = { "taplo" },
+    yaml = { "yamlfmt" },
+    markdown = { "markdownfmt" },
 
-    javascriptreact = { "prettier" },
-    typescriptreact = { "prettier" },
+    -- ───── PROTOBUF ─────
+    proto = { "buf" },
 
-    json = { "prettier" },
-    toml = { "prettier" },
-    yaml = { "prettier" },
+    -- ───── DOTENV / ENV ─────
+    dotenv = { "prettierd" },
 
-    protobuf = { "buf" },
+    -- ───── SHELL SCRIPTS ─────
+    bash = { "shfmt" },
+    zsh = { "shfmt" },
 
-    dotenv = { "prettier" }, -- .env files
+    -- ───── MAKEFILES ─────
+    make = { "beautysh" }, -- Alternatively: shfmt (if compatible)
+
+    -- ───── DOCKER / JSON / YAML ─────
+    dockerfile = { "dockerfmt" }, -- Dockerfiles
+
+    -- ───── LUA ─────
+    lua = { "stylua" },
   },
 
   ------------------------------------------------------------------------
   -- 2. NOTIFY ON ERROR
   --
-  -- If true, Conform will use Neovim’s notification API to show errors
-  -- (e.g., when a formatter fails). Default is false to avoid pop‑ups.
+  -- If true, Conform will show errors via Neovim’s notification API
   ------------------------------------------------------------------------
   notify_on_error = false,
 
   ------------------------------------------------------------------------
   -- 3. FORMAT ON SAVE
   --
-  -- The function receives the buffer number (`bufnr`) and must return a table
-  -- of options or `nil` to disable auto‑formatting for that buffer.
-  --
-  -- Example: Disable auto‑format in files matching “*_test.go”.
+  -- Return a table with options or `nil` to disable formatting for this buffer
   ------------------------------------------------------------------------
   format_on_save = function()
-    -- local file_name = vim.api.nvim_buf_get_name(bufnr)
-    -- if string.match(file_name, ".*_test%.go$") then
-    --   return nil
-    -- end
-
     return {
-      timeout_ms = 500, -- Max time (ms) for the formatter to finish.
+      timeout_ms = 500, -- Max time (ms) for formatter to finish
       lsp_format = "never", -- 'never' | 'fallback'
-      -- 'never'   – never use LSP; only external formatter.
-      -- 'fallback' – try LSP first, then fall back to formatter.
     }
   end,
 
   ------------------------------------------------------------------------
   -- 4. FALLBACK FORMATTERS
   --
-  -- If no formatter is defined for a filetype, these will be tried (in order).
-  -- Useful for generic text files.
+  -- If no formatter is defined for a filetype, these are tried.
   ------------------------------------------------------------------------
-  fallback_formatters = { "prettier" },
+  fallback_formatters = { "prettierd" },
 
   ------------------------------------------------------------------------
-  -- 5. GLOBAL ENABLE/DISABLE
-  --
-  --   - `true`   – auto‑formatting active for all buffers that have a formatter.
-  --   - `false`  – disables auto‑formatting everywhere.
+  -- 5. GLOBAL ENABLE / DISABLE
   ------------------------------------------------------------------------
   enabled = true,
 }
